@@ -1,0 +1,46 @@
+{
+  "name": "dymantic/laravel-instagram-feed",
+  "description": "Fetches the instagram feed for given authenticated profiles",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael Joyner",
+      "email": "joyner.michael@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1 | ^8.0",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^6.5 | ^7.0",
+    "illuminate/config": "5.8.* | ^6.0 | ^7.0 | ^8.0",
+    "illuminate/console": "5.8.* | ^6.0 | ^7.0 | ^8.0",
+    "illuminate/database": "5.8.* | ^6.0 | ^7.0 | ^8.0",
+    "illuminate/http": "5.8.* | ^6.0 | ^7.0 | ^8.0",
+    "illuminate/mail": "5.8.* | ^6.0 | ^7.0 | ^8.0",
+    "illuminate/support": "5.8.* | ^6.0 | ^7.0 | ^8.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dymantic\\InstagramFeed\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dymantic\\InstagramFeed\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Dymantic\\InstagramFeed\\InstagramFeedServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

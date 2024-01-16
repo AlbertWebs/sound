@@ -1,0 +1,43 @@
+{
+    "name": "javcorreia/laravel-wishlist",
+    "description": "wishlist for laravel 5.8|6.*|7.*|8.*|9.*",
+    "keywords": [
+      "laravel", "laravel wishlist", "wishlist laravel", "wishlist","ecommerce laravel wishlist", "laravel ecommerce"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bhavin Rudani",
+            "email": "bhavinrudani94@gmail.com"
+        },
+        {
+            "name": "José Correia",
+            "email": "javcorreia@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.2",
+        "illuminate/support": "^5.8|^6.0|^7.0|^8.0|^9.0"
+    },
+    "require-dev": {
+        "illuminate/session": "^5.8|^6.0|^7.0|^8.0|^9.0",
+        "illuminate/database": "^5.8|^6.0|^7.0|^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "javcorreia\\Wishlist\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "javcorreia\\Wishlist\\Providers\\WishlistServiceProvider"
+            ],
+            "aliases": {
+                "Wishlist": "javcorreia\\Wishlist\\Facades\\Wishlist"
+            }
+        }
+    }
+}
