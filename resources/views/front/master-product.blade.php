@@ -6,25 +6,51 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
         <link rel="icon" type="image/x-icon" href="{{asset('uploads/favicon.png')}}">
+        @foreach($Products as $Product)
         <?php $SiteSettings = DB::table('sitesettings')->get() ?>
         @foreach ($SiteSettings as $Settings)
                 {{-- SEO --}}
-            {!! SEOMeta::generate() !!}
+            <?php $Category = DB::table('category')->where('id',$Product->cat)->get(); ?>
+            @foreach ($Category as $category)
             <meta name="author" content="Designekta Studios">
-            <meta property="og:description" content="Car Audio store in Nairobi, Vehicle Sounds Systems in Kenya, Vehicle Accessories in kenya, Car Sound Systems in Kenya, Car alarm Systems in Kenya">
-            <meta property="og:image" content="{{url('/')}}/uploads/logo/{{$Settings->logo}}" />
-            <meta property="fb:app_id" content="431980657174772" />
-            {!! OpenGraph::generate() !!}
-            {!! Twitter::generate() !!}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:creator" content="@soundwaveaudio" />
-            <meta name="_token" content="{{ csrf_token() }}">
+
+
+
+            <meta name="robots" content="index,follow">
+            <meta name="googlebot" content="index,follow"><!-- Google Specific -->
+            <meta name="subject" content="{!!html_entity_decode($Product->name)!!} - Sound Wave Audio - {{$category->cat}} In Nairobi">
+            <meta name="rating" content="General">
+            <meta name="referrer" content="no-referrer">
+            <meta name="theme-color" content="#1c2c52">
+
+            <title>{!!html_entity_decode($Product->name)!!} - Sound Wave Audio - {{$category->cat}} In Nairobi</title>
+            <meta name="description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya</a> From as Low as {{$Product->price}}">
+            <link rel="canonical" href="https://soundwaveaudio.co.ke"/>
+            <meta property="og:description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya</a> From as Low as {{$Product->price}}" />
+            <meta property="og:title" content="{!!html_entity_decode($Product->name)!!} - Sound Wave Audio - {{$category->cat}} In Nairobi" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://soundwaveaudio.co.ke" />
+
+            <meta property="og:image" content="{{url('/')}}/uploads/product/{{$Product->fb_pixels}}" />
+            <meta property="og:site_name" content="Sound Wave Audio">
+            <meta property="og:locale" content="en_US">
+            <meta name="twitter:title" content="{!!html_entity_decode($Product->name)!!} - Sound Wave Audio - {{$category->cat}} In Nairobi" />
+            <meta name="twitter:site" content="@SoundwaveAudio" />
+            <meta name="twitter:card" content="summary">
+            <meta name="twitter:site" content="@SoundwaveAudio">
+            <meta name="twitter:url" content="https://soundwaveaudio.co.ke">
+            <meta name="twitter:description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya</a> From as Low as {{$Product->price}}">
+            <meta name="twitter:image" content="{{url('/')}}/uploads/product/{{$Product->fb_pixels}}">
+
+            @endforeach
+
             {{-- SEO --}}
             {{-- @include('front.favicon') --}}
             {{-- @include('front.facebook') --}}
             {{-- @include('front.tawk') --}}
             {{-- @include('front.google') --}}
         @endforeach
+
 
 
 
@@ -49,9 +75,10 @@
         <link rel="stylesheet" type="text/css" href="{{asset('theme/vendor/sticky-icon/stickyicon.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('theme/css/demo29.min.css')}}">
     </head>
+    @endforeach
     <body>
         <div class="page-wrapper">
-            <h1 class="d-none"> {{$Product->name}}</h1>
+            <h1 class="d-none"> {!!html_entity_decode($Product->name)!!}</h1>
             <header class="header">
                 @include('front.header-middle')
             </header>
