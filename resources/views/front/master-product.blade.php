@@ -13,9 +13,6 @@
             <?php $Category = DB::table('category')->where('id',$Product->cat)->get(); ?>
             @foreach ($Category as $category)
             <meta name="author" content="Designekta Studios">
-
-
-
             <meta name="robots" content="index,follow">
             <meta name="googlebot" content="index,follow"><!-- Google Specific -->
             <meta name="subject" content="{!!html_entity_decode($Product->name)!!} - Sound Wave Audio - {{$category->cat}} In Nairobi">

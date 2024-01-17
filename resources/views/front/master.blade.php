@@ -7,23 +7,40 @@
       <link rel="icon" type="image/x-icon" href="{{asset('uploads/favicon.png')}}">
       <?php $SiteSettings = DB::table('sitesettings')->get() ?>
       @foreach ($SiteSettings as $Settings)
-            {{-- SEO --}}
-        {!! SEOMeta::generate() !!}
-        <meta name="author" content="Designekta Studios">
-        <meta property="og:description" content="Car Audio store in Nairobi, Vehicle Sounds Systems in Kenya, Vehicle Accessories in kenya, Car Sound Systems in Kenya, Car alarm Systems in Kenya">
-        <meta property="og:image" content="{{url('/')}}/uploads/logo/{{$Settings->logo}}" />
-        <meta property="fb:app_id" content="431980657174772" />
-        {!! OpenGraph::generate() !!}
-        {!! Twitter::generate() !!}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@soundwaveaudio" />
-        <meta name="_token" content="{{ csrf_token() }}">
-        {{-- SEO --}}
-        {{-- @include('front.favicon') --}}
-        {{-- @include('front.facebook') --}}
-        {{-- @include('front.tawk') --}}
-        {{-- @include('front.google') --}}
-     @endforeach
+
+      <meta name="robots" content="index,follow">
+      <meta name="googlebot" content="index,follow"><!-- Google Specific -->
+      <meta name="subject" content="Sound Wave Audio - Elevate Your Drive with Premium Car Audio Systems in Nairobi">
+      <meta name="rating" content="General">
+      <meta name="referrer" content="no-referrer">
+      <meta name="theme-color" content="#1c2c52">
+
+      <title>Sound Wave Audio - Elevate Your Drive with Premium Car Audio Systems in Nairobi</title>
+      <meta name="description" content="Transform your driving experience with Sound Wave Audio's cutting-edge Car Audio Systems. Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!">
+      <link rel="canonical" href="https://soundwaveaudio.co.ke"/>
+      <meta name="keywords" content="Car Audio Systems, Premium Car Audio, High-Performance Speakers, Amplifiers, In-Car Entertainment, Sound Solutions, Automotive Sound, Crystal-Clear Audio, Powerful Bass, Sound Wave Audio.">
+
+      <meta property="og:description" content="Transform your driving experience with Sound Wave Audio's cutting-edge Car Audio Systems. Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!" />
+      <meta property="og:title" content="Sound Wave Audio - Elevate Your Drive with Premium Car Audio Systems in Nairobi" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://soundwaveaudio.co.ke" />
+      <meta property="og:image" content="https://soundwaveaudio.co.ke/uploads/logo.png" />
+      <meta property="og:site_name" content="Sound Wave Audio">
+      <meta property="og:locale" content="en_US">
+
+      <meta name="twitter:title" content="Sound Wave Audio - Elevate Your Drive with Premium Car Audio Systems in Nairobi" />
+      <meta name="twitter:site" content="@SoundwaveAudio" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="@SoundwaveAudio">
+      <meta name="twitter:url" content="https://soundwaveaudio.co.ke">
+      <meta name="twitter:description" content="Transform your driving experience with Sound Wave Audio's cutting-edge Car Audio Systems. Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!">
+      <meta name="twitter:image" content="https://soundwaveaudio.co.ke/uploads/logo.png">
+
+
+
+
+
+      @endforeach
 
 
 
