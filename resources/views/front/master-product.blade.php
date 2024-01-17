@@ -21,9 +21,9 @@
             <meta name="theme-color" content="#1c2c52">
 
             <title>{!!html_entity_decode($Product->name)!!} - Sound Wave Audio - {{$category->cat}} In Nairobi</title>
-            <meta name="description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya</a> From as Low as {{$Product->price}}">
+            <meta name="description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya From as Low as {{$Product->price}}">
             <link rel="canonical" href="https://soundwaveaudio.co.ke"/>
-            <meta property="og:description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya</a> From as Low as {{$Product->price}}" />
+            <meta property="og:description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya From as Low as {{$Product->price}}" />
             <meta property="og:title" content="{!!html_entity_decode($Product->name)!!} - Sound Wave Audio - {{$category->cat}} In Nairobi" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://soundwaveaudio.co.ke" />
@@ -36,7 +36,7 @@
             <meta name="twitter:card" content="summary">
             <meta name="twitter:site" content="@SoundwaveAudio">
             <meta name="twitter:url" content="https://soundwaveaudio.co.ke">
-            <meta name="twitter:description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya</a> From as Low as {{$Product->price}}">
+            <meta name="twitter:description" content="Order this {!!html_entity_decode($Product->name)!!} From Sound Wave Audio - The Best Vehicle Audio Solutions in Kenya From as Low as {{$Product->price}}">
             <meta name="twitter:image" content="{{url('/')}}/uploads/product/{{$Product->fb_pixels}}">
 
             @endforeach
