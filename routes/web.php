@@ -23,6 +23,7 @@ use App\Http\Controllers\DemoController;
 */
 // Route::get('/', [HomeController::class, 'index_home'])->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/list', [HomeController::class, 'list'])->name('list');
 Route::get('/home', [HomeController::class, 'index'])->name('home-page');
 Route::get('/product-quick-view/{slung}', [HomeController::class, 'product_quick_view'])->name('product-quick-view');
 Route::get('/products', [HomeController::class, 'categories'])->name('categories');
@@ -31,8 +32,6 @@ Route::get('/products/category', [HomeController::class, 'products_category'])->
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
     $exitCode2 = Artisan::call('config:clear');
-    // Profile::where('username','stagepassav')->first()->refreshFeed(6);
-    // return what you want
     echo "Done";
 });
 
@@ -152,438 +151,438 @@ Route::group(['prefix'=>'admin'], function(){
 
 Route::get('dropzone', [DropzoneController::class, 'dropzone']);
 Route::post('dropzone/store', [DropzoneController::class, 'dropzoneStore'])->name('dropzone.store');
-Route::get('/photos', [AdminsController::class, 'photos'])->middleware('is_admin');
-Route::get('/photosGrid', [AdminsController::class, 'photosGrid'])->middleware('is_admin');
-Route::get('/editPhoto/{id}',  [AdminsController::class, 'editPhoto'])->middleware('is_admin');
-Route::get('/deletePhoto/{id}',  [AdminsController::class, 'deletePhoto'])->middleware('is_admin');
-Route::post('/edit_Photo/{id}',  [AdminsController::class, 'edit_Photo'])->middleware('is_admin');
+Route::get('/photos', [AdminsController::class, 'photos']);
+Route::get('/photosGrid', [AdminsController::class, 'photosGrid']);
+Route::get('/editPhoto/{id}',  [AdminsController::class, 'editPhoto']);
+Route::get('/deletePhoto/{id}',  [AdminsController::class, 'deletePhoto']);
+Route::post('/edit_Photo/{id}',  [AdminsController::class, 'edit_Photo']);
 
 
 
 //Login route
 
 
-Route::get('/',  [AdminsController::class, 'index'])->name('admin.home')->middleware('is_admin');
+Route::get('/',  [AdminsController::class, 'index'])->name('admin.home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //reset password
-Route::get('/searches',  [AdminsController::class, 'Searches'])->middleware('is_admin');
+Route::get('/searches',  [AdminsController::class, 'Searches']);
 //Testimonial
-Route::get('/addTestimonial',  [AdminsController::class, 'addTestimonial'])->middleware('is_admin');
-Route::post('/add_Testimonial',  [AdminsController::class, 'add_Testimonial'])->middleware('is_admin');
-Route::get('/testimonials', [AdminsController::class, 'testimonials'])->middleware('is_admin');
-Route::get('/editTestimonial/{id}',  [AdminsController::class, 'editTestimonial'])->middleware('is_admin');
-Route::get('/deleteTestimonial/{id}',  [AdminsController::class, 'deleteTestimonial'])->middleware('is_admin');
-Route::post('/edit_Testimonial/{id}',  [AdminsController::class, 'edit_Testimonial'])->middleware('is_admin');
+Route::get('/addTestimonial',  [AdminsController::class, 'addTestimonial']);
+Route::post('/add_Testimonial',  [AdminsController::class, 'add_Testimonial']);
+Route::get('/testimonials', [AdminsController::class, 'testimonials']);
+Route::get('/editTestimonial/{id}',  [AdminsController::class, 'editTestimonial']);
+Route::get('/deleteTestimonial/{id}',  [AdminsController::class, 'deleteTestimonial']);
+Route::post('/edit_Testimonial/{id}',  [AdminsController::class, 'edit_Testimonial']);
 
 //Variation
 
-Route::get('/variations-table', [AdminsController::class, 'variations_table'])->middleware('is_admin');
-Route::get('/addVariation/{product_id}',  [AdminsController::class, 'addVariation'])->name('addVariation')->middleware('is_admin');
-Route::post('/add_Variation',  [AdminsController::class, 'add_Variation'])->middleware('is_admin');
-Route::get('/variations/{id}', [AdminsController::class, 'variations'])->middleware('is_admin');
-Route::get('/editVariation/{id}',  [AdminsController::class, 'editVariation'])->middleware('is_admin');
-Route::get('/deleteVariation/{id}',  [AdminsController::class, 'deleteVariation'])->middleware('is_admin');
-Route::post('/edit_Variation/{id}',  [AdminsController::class, 'edit_Variation'])->middleware('is_admin');
+Route::get('/variations-table', [AdminsController::class, 'variations_table']);
+Route::get('/addVariation/{product_id}',  [AdminsController::class, 'addVariation'])->name('addVariation');
+Route::post('/add_Variation',  [AdminsController::class, 'add_Variation']);
+Route::get('/variations/{id}', [AdminsController::class, 'variations']);
+Route::get('/editVariation/{id}',  [AdminsController::class, 'editVariation']);
+Route::get('/deleteVariation/{id}',  [AdminsController::class, 'deleteVariation']);
+Route::post('/edit_Variation/{id}',  [AdminsController::class, 'edit_Variation']);
 
 
-Route::get('/edit-Product-slung',  [AdminsController::class, 'edit_Product_slung'])->middleware('is_admin');
+Route::get('/edit-Product-slung',  [AdminsController::class, 'edit_Product_slung']);
 
-Route::get('/edit-sub-slung',  [AdminsController::class, 'subcategory_slung'])->middleware('is_admin');
+Route::get('/edit-sub-slung',  [AdminsController::class, 'subcategory_slung']);
 
 Route::get('/addProductToFacebookPixel','AdminsController@addProductToFacebookPixel');
 Route::get('/emptyProductToFacebookPixel','AdminsController@emptyProductToFacebookPixel');
 
 //Terms Privacy copyright
 //copyright
-Route::get('/copyright', [AdminsController::class, 'copyright'])->middleware('is_admin');
-Route::post('/edit_copyright',  [AdminsController::class, 'edit_copyright'])->middleware('is_admin');
+Route::get('/copyright', [AdminsController::class, 'copyright']);
+Route::post('/edit_copyright',  [AdminsController::class, 'edit_copyright']);
 // Delivery Terms
-Route::get('/delivery', [AdminsController::class, 'delivery'])->middleware('is_admin');
-Route::post('/edit_delivery',  [AdminsController::class, 'edit_delivery'])->middleware('is_admin');
+Route::get('/delivery', [AdminsController::class, 'delivery']);
+Route::post('/edit_delivery',  [AdminsController::class, 'edit_delivery']);
 //Privacy
-Route::get('/privacy', [AdminsController::class, 'privacy'])->middleware('is_admin');
-Route::get('/addPrivacy',  [AdminsController::class, 'addPrivacy'])->middleware('is_admin');
-Route::get('/editPrivacy/{id}',  [AdminsController::class, 'editPrivacy'])->middleware('is_admin');
-Route::post('/add_privacy',  [AdminsController::class, 'add_privacy'])->middleware('is_admin');
-Route::get('/delete_privacy/{id}', [AdminsController::class, 'delete_privacy'])->middleware('is_admin');
-Route::post('/edit_privacy/{id}',  [AdminsController::class, 'edit_privacy'])->middleware('is_admin');
+Route::get('/privacy', [AdminsController::class, 'privacy']);
+Route::get('/addPrivacy',  [AdminsController::class, 'addPrivacy']);
+Route::get('/editPrivacy/{id}',  [AdminsController::class, 'editPrivacy']);
+Route::post('/add_privacy',  [AdminsController::class, 'add_privacy']);
+Route::get('/delete_privacy/{id}', [AdminsController::class, 'delete_privacy']);
+Route::post('/edit_privacy/{id}',  [AdminsController::class, 'edit_privacy']);
 
 //values
-Route::get('/coupons', [AdminsController::class, 'coupons'])->middleware('is_admin');
-Route::get('/addCoupon',  [AdminsController::class, 'addCoupon'])->middleware('is_admin');
-Route::get('/editCoupon/{id}',  [AdminsController::class, 'editCoupon'])->middleware('is_admin');
-Route::post('/add_Coupon',  [AdminsController::class, 'add_Coupon'])->middleware('is_admin');
-Route::get('/delete_Coupon/{id}', [AdminsController::class, 'delete_Coupon'])->middleware('is_admin');
-Route::post('/edit_Coupon/{id}',  [AdminsController::class, 'edit_Coupon'])->middleware('is_admin');
+Route::get('/coupons', [AdminsController::class, 'coupons']);
+Route::get('/addCoupon',  [AdminsController::class, 'addCoupon']);
+Route::get('/editCoupon/{id}',  [AdminsController::class, 'editCoupon']);
+Route::post('/add_Coupon',  [AdminsController::class, 'add_Coupon']);
+Route::get('/delete_Coupon/{id}', [AdminsController::class, 'delete_Coupon']);
+Route::post('/edit_Coupon/{id}',  [AdminsController::class, 'edit_Coupon']);
 
 // Operations
-Route::get('/operations', [AdminsController::class, 'operations'])->name('operations')->middleware('is_admin');
+Route::get('/operations', [AdminsController::class, 'operations'])->name('operations');
 
 //values
-Route::get('/values', [AdminsController::class, 'values'])->middleware('is_admin');
-Route::get('/addValues',  [AdminsController::class, 'addValues'])->middleware('is_admin');
-Route::get('/editValues/{id}',  [AdminsController::class, 'editValues'])->middleware('is_admin');
-Route::post('/add_values',  [AdminsController::class, 'add_values'])->middleware('is_admin');
-Route::get('/delete_values/{id}', [AdminsController::class, 'delete_values'])->middleware('is_admin');
-Route::post('/edit_values/{id}',  [AdminsController::class, 'edit_values'])->middleware('is_admin');
+Route::get('/values', [AdminsController::class, 'values']);
+Route::get('/addValues',  [AdminsController::class, 'addValues']);
+Route::get('/editValues/{id}',  [AdminsController::class, 'editValues']);
+Route::post('/add_values',  [AdminsController::class, 'add_values']);
+Route::get('/delete_values/{id}', [AdminsController::class, 'delete_values']);
+Route::post('/edit_values/{id}',  [AdminsController::class, 'edit_values']);
 
 
-Route::get('/deleteOfferRestore', [AdminsController::class, 'deleteOfferRestore'])->middleware('is_admin');
+Route::get('/deleteOfferRestore', [AdminsController::class, 'deleteOfferRestore']);
 
 //Offers
-Route::get('/Products_offer', [AdminsController::class, 'Products_offer'])->middleware('is_admin');
-Route::get('/swapoffer/{id}', [AdminsController::class, 'swapoffer'])->middleware('is_admin');
-Route::get('/deleteOffer/{id}', [AdminsController::class, 'deleteOffer'])->middleware('is_admin');
-Route::post('/swap_offer/{id}', [AdminsController::class, 'swap_offer'])->middleware('is_admin');
-Route::get('/special_offer/{id}', [AdminsController::class, 'special_offer'])->middleware('is_admin');
-Route::post('/special_offer_post', [AdminsController::class, 'special_offer_post'])->middleware('is_admin');
-Route::get('/special_offer_edit/{id}', [AdminsController::class, 'special_offer_edit'])->middleware('is_admin');
-Route::get('/swap_full/{id}', [AdminsController::class, 'swap_full'])->middleware('is_admin');
+Route::get('/Products_offer', [AdminsController::class, 'Products_offer']);
+Route::get('/swapoffer/{id}', [AdminsController::class, 'swapoffer']);
+Route::get('/deleteOffer/{id}', [AdminsController::class, 'deleteOffer']);
+Route::post('/swap_offer/{id}', [AdminsController::class, 'swap_offer']);
+Route::get('/special_offer/{id}', [AdminsController::class, 'special_offer']);
+Route::post('/special_offer_post', [AdminsController::class, 'special_offer_post']);
+Route::get('/special_offer_edit/{id}', [AdminsController::class, 'special_offer_edit']);
+Route::get('/swap_full/{id}', [AdminsController::class, 'swap_full']);
 
 // Featured& trending
-Route::get('/swapTrending/{id}', [AdminsController::class, 'swapTrending'])->middleware('is_admin');
-Route::get('/swapFeatured/{id}', [AdminsController::class, 'swapFeatured'])->middleware('is_admin');
-Route::get('/swapSlider/{id}', [AdminsController::class, 'swapSlider'])->middleware('is_admin');
-Route::get('/swapBanner/{id}', [AdminsController::class, 'swapBanner'])->middleware('is_admin');
-Route::get('/swapSuggest/{id}', [AdminsController::class, 'swapSuggest'])->middleware('is_admin');
-Route::get('/swapFavorites/{id}', [AdminsController::class, 'swapFavorites'])->middleware('is_admin');
+Route::get('/swapTrending/{id}', [AdminsController::class, 'swapTrending']);
+Route::get('/swapFeatured/{id}', [AdminsController::class, 'swapFeatured']);
+Route::get('/swapSlider/{id}', [AdminsController::class, 'swapSlider']);
+Route::get('/swapBanner/{id}', [AdminsController::class, 'swapBanner']);
+Route::get('/swapSuggest/{id}', [AdminsController::class, 'swapSuggest']);
+Route::get('/swapFavorites/{id}', [AdminsController::class, 'swapFavorites']);
 
 
 
-Route::get('/wishlist', [AdminsController::class, 'wishlist'])->middleware('is_admin');
+Route::get('/wishlist', [AdminsController::class, 'wishlist']);
 
 //Who
-Route::get('/who', [AdminsController::class, 'who'])->middleware('is_admin');
-Route::get('/editWho/{id}',  [AdminsController::class, 'editWho'])->middleware('is_admin');
-Route::get('/delete_who/{id}', [AdminsController::class, 'delete_who'])->middleware('is_admin');
-Route::post('/edit_who/{id}',  [AdminsController::class, 'edit_who'])->middleware('is_admin');
+Route::get('/who', [AdminsController::class, 'who']);
+Route::get('/editWho/{id}',  [AdminsController::class, 'editWho']);
+Route::get('/delete_who/{id}', [AdminsController::class, 'delete_who']);
+Route::post('/edit_who/{id}',  [AdminsController::class, 'edit_who']);
 
 //Terms
-Route::get('/terms', [AdminsController::class, 'terms'])->middleware('is_admin');
-Route::get('/addTerms',  [AdminsController::class, 'addTerms'])->middleware('is_admin');
-Route::get('/editTerm/{id}',  [AdminsController::class, 'editTerm'])->middleware('is_admin');
-Route::post('/add_term',  [AdminsController::class, 'add_term'])->middleware('is_admin');
-Route::post('/edit_term/{id}',  [AdminsController::class, 'edit_term'])->middleware('is_admin');
-Route::get('/delete_term/{id}', [AdminsController::class, 'delete_term'])->middleware('is_admin');
+Route::get('/terms', [AdminsController::class, 'terms']);
+Route::get('/addTerms',  [AdminsController::class, 'addTerms']);
+Route::get('/editTerm/{id}',  [AdminsController::class, 'editTerm']);
+Route::post('/add_term',  [AdminsController::class, 'add_term']);
+Route::post('/edit_term/{id}',  [AdminsController::class, 'edit_term']);
+Route::get('/delete_term/{id}', [AdminsController::class, 'delete_term']);
 //About
-Route::get('/about', [AdminsController::class, 'about'])->middleware('is_admin');
-Route::post('/about_save',  [AdminsController::class, 'about_save'])->middleware('is_admin');
+Route::get('/about', [AdminsController::class, 'about']);
+Route::post('/about_save',  [AdminsController::class, 'about_save']);
 //Services
-Route::get('/services', [AdminsController::class, 'services'])->middleware('is_admin');
-Route::get('/deleteService/{id}', [AdminsController::class, 'deleteService'])->middleware('is_admin');
-Route::post('/edit_Services/{id}',  [AdminsController::class, 'edit_Services'])->middleware('is_admin');
-Route::get('/editServices/{id}',  [AdminsController::class, 'editServices'])->middleware('is_admin');
-Route::get('/addService',  [AdminsController::class, 'addService'])->middleware('is_admin');
-Route::post('/add_Service',  [AdminsController::class, 'add_Service'])->middleware('is_admin');
+Route::get('/services', [AdminsController::class, 'services']);
+Route::get('/deleteService/{id}', [AdminsController::class, 'deleteService']);
+Route::post('/edit_Services/{id}',  [AdminsController::class, 'edit_Services']);
+Route::get('/editServices/{id}',  [AdminsController::class, 'editServices']);
+Route::get('/addService',  [AdminsController::class, 'addService']);
+Route::post('/add_Service',  [AdminsController::class, 'add_Service']);
 
 //Pricing
-Route::get('/pricing', [AdminsController::class, 'pricing'])->middleware('is_admin');
-Route::get('/deletePricing/{id}', [AdminsController::class, 'deletePricing'])->middleware('is_admin');
-Route::post('/edit_Pricing/{id}',  [AdminsController::class, 'edit_Pricing'])->middleware('is_admin');
-Route::get('/editPricing/{id}',  [AdminsController::class, 'editPricing'])->middleware('is_admin');
-Route::get('/addPricing',  [AdminsController::class, 'addPricing'])->middleware('is_admin');
-Route::post('/add_Pricing',  [AdminsController::class, 'add_Pricing'])->middleware('is_admin');
+Route::get('/pricing', [AdminsController::class, 'pricing']);
+Route::get('/deletePricing/{id}', [AdminsController::class, 'deletePricing']);
+Route::post('/edit_Pricing/{id}',  [AdminsController::class, 'edit_Pricing']);
+Route::get('/editPricing/{id}',  [AdminsController::class, 'editPricing']);
+Route::get('/addPricing',  [AdminsController::class, 'addPricing']);
+Route::post('/add_Pricing',  [AdminsController::class, 'add_Pricing']);
 
 //Video
-Route::get('/videos', [AdminsController::class, 'videos'])->middleware('is_admin');
-Route::get('/deleteVideo/{id}', [AdminsController::class, 'deleteVideo'])->middleware('is_admin');
-Route::post('/edit_Video/{id}',  [AdminsController::class, 'edit_Video'])->middleware('is_admin');
-Route::get('/editVideo/{id}',  [AdminsController::class, 'editVideo'])->middleware('is_admin');
-Route::post('/add_Video/{id}',  [AdminsController::class, 'add_Video'])->middleware('is_admin');
-Route::get('/addVideo',  [AdminsController::class, 'addVideo'])->middleware('is_admin');
+Route::get('/videos', [AdminsController::class, 'videos']);
+Route::get('/deleteVideo/{id}', [AdminsController::class, 'deleteVideo']);
+Route::post('/edit_Video/{id}',  [AdminsController::class, 'edit_Video']);
+Route::get('/editVideo/{id}',  [AdminsController::class, 'editVideo']);
+Route::post('/add_Video/{id}',  [AdminsController::class, 'add_Video']);
+Route::get('/addVideo',  [AdminsController::class, 'addVideo']);
 
 
 //Porfolio
-Route::get('/portfolio', [AdminsController::class, 'portfolio'])->middleware('is_admin');
-Route::get('/deletePortfolio/{id}', [AdminsController::class, 'deletePortfolio'])->middleware('is_admin');
-Route::post('/edit_Portfolio/{id}',  [AdminsController::class, 'edit_Portfolio'])->middleware('is_admin');
-Route::get('/editPortfolio/{id}',  [AdminsController::class, 'editPortfolio'])->middleware('is_admin');
-Route::get('/addPortfolio',  [AdminsController::class, 'addPortfolio'])->middleware('is_admin');
-Route::post('/add_Portfolio',  [AdminsController::class, 'add_Portfolio'])->middleware('is_admin');
+Route::get('/portfolio', [AdminsController::class, 'portfolio']);
+Route::get('/deletePortfolio/{id}', [AdminsController::class, 'deletePortfolio']);
+Route::post('/edit_Portfolio/{id}',  [AdminsController::class, 'edit_Portfolio']);
+Route::get('/editPortfolio/{id}',  [AdminsController::class, 'editPortfolio']);
+Route::get('/addPortfolio',  [AdminsController::class, 'addPortfolio']);
+Route::post('/add_Portfolio',  [AdminsController::class, 'add_Portfolio']);
 
 //How It Works
-Route::get('/how', [AdminsController::class, 'how'])->middleware('is_admin');
-Route::get('/deleteHow/{id}', [AdminsController::class, 'deleteHow'])->middleware('is_admin');
-Route::post('/edit_How/{id}',  [AdminsController::class, 'edit_How'])->middleware('is_admin');
-Route::get('/editHow/{id}',  [AdminsController::class, 'editHow'])->middleware('is_admin');
-Route::get('/addHow',  [AdminsController::class, 'addHow'])->middleware('is_admin');
-Route::post('/add_How',  [AdminsController::class, 'add_How'])->middleware('is_admin');
+Route::get('/how', [AdminsController::class, 'how']);
+Route::get('/deleteHow/{id}', [AdminsController::class, 'deleteHow']);
+Route::post('/edit_How/{id}',  [AdminsController::class, 'edit_How']);
+Route::get('/editHow/{id}',  [AdminsController::class, 'editHow']);
+Route::get('/addHow',  [AdminsController::class, 'addHow']);
+Route::post('/add_How',  [AdminsController::class, 'add_How']);
 
 //Gallery
-Route::get('/gallery', [AdminsController::class, 'gallery'])->middleware('is_admin');
-Route::get('/editGallery/{id}', [AdminsController::class, 'editGallery'])->middleware('is_admin');
-Route::get('/deleteGallery/{id}', [AdminsController::class, 'deleteGallery'])->middleware('is_admin');
-Route::post('/save_gallery/{id}',  [AdminsController::class, 'save_gallery'])->middleware('is_admin');
-Route::get('/addGallery',  [AdminsController::class, 'addGallery'])->middleware('is_admin');
-Route::get('/galleryList',  [AdminsController::class, 'galleryList'])->middleware('is_admin');
-Route::post('/add_Gallery',  [AdminsController::class, 'add_Gallery'])->middleware('is_admin');
+Route::get('/gallery', [AdminsController::class, 'gallery']);
+Route::get('/editGallery/{id}', [AdminsController::class, 'editGallery']);
+Route::get('/deleteGallery/{id}', [AdminsController::class, 'deleteGallery']);
+Route::post('/save_gallery/{id}',  [AdminsController::class, 'save_gallery']);
+Route::get('/addGallery',  [AdminsController::class, 'addGallery']);
+Route::get('/galleryList',  [AdminsController::class, 'galleryList']);
+Route::post('/add_Gallery',  [AdminsController::class, 'add_Gallery']);
 
 //Slider
-Route::get('/slider ', [AdminsController::class, 'slider'])->middleware('is_admin');
-Route::get('/editSlider/{id}', [AdminsController::class, 'editSlider'])->middleware('is_admin');
-Route::get('/deleteSlider/{id}', [AdminsController::class, 'deleteSlider'])->middleware('is_admin');
-Route::post('/edit_Slider/{id}',  [AdminsController::class, 'edit_Slider'])->middleware('is_admin');
-Route::get('/addSlider',  [AdminsController::class, 'addSlider'])->middleware('is_admin');
-Route::post('/add_Slider',  [AdminsController::class, 'add_Slider'])->middleware('is_admin');
+Route::get('/slider ', [AdminsController::class, 'slider']);
+Route::get('/editSlider/{id}', [AdminsController::class, 'editSlider']);
+Route::get('/deleteSlider/{id}', [AdminsController::class, 'deleteSlider']);
+Route::post('/edit_Slider/{id}',  [AdminsController::class, 'edit_Slider']);
+Route::get('/addSlider',  [AdminsController::class, 'addSlider']);
+Route::post('/add_Slider',  [AdminsController::class, 'add_Slider']);
 
 //Banner
-Route::get('/banner', [AdminsController::class, 'banners'])->middleware('is_admin');
-Route::get('/editBanner/{id}', [AdminsController::class, 'editBanner'])->middleware('is_admin');
-Route::post('/edit_Banner/{id}',  [AdminsController::class, 'edit_Banner'])->middleware('is_admin');
+Route::get('/banner', [AdminsController::class, 'banners']);
+Route::get('/editBanner/{id}', [AdminsController::class, 'editBanner']);
+Route::post('/edit_Banner/{id}',  [AdminsController::class, 'edit_Banner']);
 
 //Clients
-Route::get('/addClient',  [AdminsController::class, 'addClient'])->middleware('is_admin');
-Route::post('/add_Client',  [AdminsController::class, 'add_Client'])->middleware('is_admin');
-Route::get('/clients', [AdminsController::class, 'clients'])->middleware('is_admin');
-Route::get('/editClient/{id}',  [AdminsController::class, 'editClient'])->middleware('is_admin');
-Route::get('/deleteClient/{id}',  [AdminsController::class, 'deleteClient'])->middleware('is_admin');
-Route::post('/edit_Client/{id}',  [AdminsController::class, 'edit_Client'])->middleware('is_admin');
+Route::get('/addClient',  [AdminsController::class, 'addClient']);
+Route::post('/add_Client',  [AdminsController::class, 'add_Client']);
+Route::get('/clients', [AdminsController::class, 'clients']);
+Route::get('/editClient/{id}',  [AdminsController::class, 'editClient']);
+Route::get('/deleteClient/{id}',  [AdminsController::class, 'deleteClient']);
+Route::post('/edit_Client/{id}',  [AdminsController::class, 'edit_Client']);
 
 
 //Clients
-Route::get('/addBrand',  [AdminsController::class, 'addBrand'])->middleware('is_admin');
-Route::post('/add_Brand',  [AdminsController::class, 'add_Brand'])->middleware('is_admin');
-Route::get('/brands', [AdminsController::class, 'brands'])->middleware('is_admin');
-Route::get('/editBrand/{id}',  [AdminsController::class, 'editBrand'])->middleware('is_admin');
-Route::get('/deleteBrand/{id}',  [AdminsController::class, 'deleteBrand'])->middleware('is_admin');
-Route::post('/edit_Brand/{id}',  [AdminsController::class, 'edit_Brand'])->middleware('is_admin');
+Route::get('/addBrand',  [AdminsController::class, 'addBrand']);
+Route::post('/add_Brand',  [AdminsController::class, 'add_Brand']);
+Route::get('/brands', [AdminsController::class, 'brands']);
+Route::get('/editBrand/{id}',  [AdminsController::class, 'editBrand']);
+Route::get('/deleteBrand/{id}',  [AdminsController::class, 'deleteBrand']);
+Route::post('/edit_Brand/{id}',  [AdminsController::class, 'edit_Brand']);
 
 //Statisctics
-Route::get('/stats', [AdminsController::class, 'stats'])->middleware('is_admin');
-Route::get('/editStats/{id}',  [AdminsController::class, 'editStats'])->middleware('is_admin');
-Route::get('/deleteStats/{id}',  [AdminsController::class, 'deleteStats'])->middleware('is_admin');
-Route::post('/edit_Stats/{id}',  [AdminsController::class, 'edit_Stats'])->middleware('is_admin');
+Route::get('/stats', [AdminsController::class, 'stats']);
+Route::get('/editStats/{id}',  [AdminsController::class, 'editStats']);
+Route::get('/deleteStats/{id}',  [AdminsController::class, 'deleteStats']);
+Route::post('/edit_Stats/{id}',  [AdminsController::class, 'edit_Stats']);
 
 //Pages
-Route::get('/pages', [AdminsController::class, 'pages'])->middleware('is_admin');
-Route::get('/editPage/{id}', [AdminsController::class, 'editPage'])->middleware('is_admin');
-Route::get('/deletePage/{id}', [AdminsController::class, 'deletePage'])->middleware('is_admin');
-Route::post('/edit_Page/{id}',  [AdminsController::class, 'edit_Page'])->middleware('is_admin');
-Route::get('/addPage',  [AdminsController::class, 'addPage'])->middleware('is_admin');
-Route::post('/add_Page',  [AdminsController::class, 'add_Page'])->middleware('is_admin');
-Route::post('/set_Page/{name}',  [AdminsController::class, 'set_Page'])->middleware('is_admin');
-Route::get('/setPage/{name}',  [AdminsController::class, 'setPage'])->middleware('is_admin');
+Route::get('/pages', [AdminsController::class, 'pages']);
+Route::get('/editPage/{id}', [AdminsController::class, 'editPage']);
+Route::get('/deletePage/{id}', [AdminsController::class, 'deletePage']);
+Route::post('/edit_Page/{id}',  [AdminsController::class, 'edit_Page']);
+Route::get('/addPage',  [AdminsController::class, 'addPage']);
+Route::post('/add_Page',  [AdminsController::class, 'add_Page']);
+Route::post('/set_Page/{name}',  [AdminsController::class, 'set_Page']);
+Route::get('/setPage/{name}',  [AdminsController::class, 'setPage']);
 
 // My Api
-Route::get('/myApi',  [AdminsController::class, 'myApi'])->middleware('is_admin');
-Route::get('/invoices',  [AdminsController::class, 'invoices'])->middleware('is_admin');
-Route::get('/deleteInvoice/{id}',  [AdminsController::class, 'deleteInvoice'])->middleware('is_admin');
-Route::get('/approveInvoice/{id}',  [AdminsController::class, 'approveInvoice'])->middleware('is_admin');
+Route::get('/myApi',  [AdminsController::class, 'myApi']);
+Route::get('/invoices',  [AdminsController::class, 'invoices']);
+Route::get('/deleteInvoice/{id}',  [AdminsController::class, 'deleteInvoice']);
+Route::get('/approveInvoice/{id}',  [AdminsController::class, 'approveInvoice']);
 
 
 //Priducts
-Route::get('/products', [AdminsController::class, 'products'])->name('all-products')->middleware('is_admin');
-Route::get('/Products-lte', [AdminsController::class, 'productslte'])->middleware('is_admin');
+Route::get('/products', [AdminsController::class, 'products'])->name('all-products');
+Route::get('/Products-lte', [AdminsController::class, 'productslte']);
 
-Route::get('/editProduct/{id}', [AdminsController::class, 'editProduct'])->middleware('is_admin');
-Route::get('/editProductDetails/{id}', [AdminsController::class, 'editProductDetails'])->middleware('is_admin');
-Route::get('/deleteProduct/{id}', [AdminsController::class, 'deleteProduct'])->middleware('is_admin');
-Route::post('/edit_Product/{id}',  [AdminsController::class, 'edit_Product'])->middleware('is_admin');
-Route::post('/edit_Product_Details/{id}',  [AdminsController::class, 'edit_Product_Details'])->middleware('is_admin');
-Route::get('/addProduct',  [AdminsController::class, 'addProduct'])->middleware('is_admin');
-Route::post('/add_Product',  [AdminsController::class, 'add_Product'])->middleware('is_admin');
+Route::get('/editProduct/{id}', [AdminsController::class, 'editProduct']);
+Route::get('/editProductDetails/{id}', [AdminsController::class, 'editProductDetails']);
+Route::get('/deleteProduct/{id}', [AdminsController::class, 'deleteProduct']);
+Route::post('/edit_Product/{id}',  [AdminsController::class, 'edit_Product']);
+Route::post('/edit_Product_Details/{id}',  [AdminsController::class, 'edit_Product_Details']);
+Route::get('/addProduct',  [AdminsController::class, 'addProduct']);
+Route::post('/add_Product',  [AdminsController::class, 'add_Product']);
 
-Route::get('/get-subcategories/{id}',  [AdminsController::class, 'get_subcategories'])->middleware('is_admin');
+Route::get('/get-subcategories/{id}',  [AdminsController::class, 'get_subcategories']);
 
 
 
 //Admin
-Route::get('/admins', [AdminsController::class, 'admins'])->middleware('is_admin');
-Route::get('/editAdmin/{id}', [AdminsController::class, 'editAdmin'])->middleware('is_admin');
-Route::get('/deleteAdmin/{id}', [AdminsController::class, 'deleteAdmin'])->middleware('is_admin');
-Route::post('/edit_Admin/{id}',  [AdminsController::class, 'edit_Admin'])->middleware('is_admin');
-Route::get('/addAdmin',  [AdminsController::class, 'addAdmin'])->middleware('is_admin');
-Route::post('/add_Admin',  [AdminsController::class, 'add_Admin'])->middleware('is_admin');
+Route::get('/admins', [AdminsController::class, 'admins']);
+Route::get('/editAdmin/{id}', [AdminsController::class, 'editAdmin']);
+Route::get('/deleteAdmin/{id}', [AdminsController::class, 'deleteAdmin']);
+Route::post('/edit_Admin/{id}',  [AdminsController::class, 'edit_Admin']);
+Route::get('/addAdmin',  [AdminsController::class, 'addAdmin']);
+Route::post('/add_Admin',  [AdminsController::class, 'add_Admin']);
 
 //Orders
-Route::get('/orders', [AdminsController::class, 'orders'])->middleware('is_admin');
-Route::get('/editOrders/{id}', [AdminsController::class, 'editOrders'])->middleware('is_admin');
-Route::get('/deleteOrders/{id}', [AdminsController::class, 'deleteOrders'])->middleware('is_admin');
-Route::get('/confrimOrder/{id}', [AdminsController::class, 'confrimOrder'])->middleware('is_admin');
-Route::get('/swapOrder/{id}', [AdminsController::class, 'swapOrder'])->middleware('is_admin');
-Route::post('/edit_Orders/{id}',  [AdminsController::class, 'edit_Orders'])->middleware('is_admin');
-Route::get('/addOrder',  [AdminsController::class, 'addOrder'])->middleware('is_admin');
-Route::post('/add_Order',  [AdminsController::class, 'add_Order'])->middleware('is_admin');
+Route::get('/orders', [AdminsController::class, 'orders']);
+Route::get('/editOrders/{id}', [AdminsController::class, 'editOrders']);
+Route::get('/deleteOrders/{id}', [AdminsController::class, 'deleteOrders']);
+Route::get('/confrimOrder/{id}', [AdminsController::class, 'confrimOrder']);
+Route::get('/swapOrder/{id}', [AdminsController::class, 'swapOrder']);
+Route::post('/edit_Orders/{id}',  [AdminsController::class, 'edit_Orders']);
+Route::get('/addOrder',  [AdminsController::class, 'addOrder']);
+Route::post('/add_Order',  [AdminsController::class, 'add_Order']);
 
 //User
-Route::get('/users', [AdminsController::class, 'users'])->middleware('is_admin');
-Route::get('/editUser/{id}', [AdminsController::class, 'editUser'])->middleware('is_admin');
-Route::get('/deleteUser/{id}', [AdminsController::class, 'deleteUser'])->middleware('is_admin');
-Route::post('/edit_User/{id}',  [AdminsController::class, 'edit_User'])->middleware('is_admin');
-Route::get('/addUser',  [AdminsController::class, 'addUser'])->middleware('is_admin');
-Route::post('/add_User',  [AdminsController::class, 'add_User'])->middleware('is_admin');
+Route::get('/users', [AdminsController::class, 'users']);
+Route::get('/editUser/{id}', [AdminsController::class, 'editUser']);
+Route::get('/deleteUser/{id}', [AdminsController::class, 'deleteUser']);
+Route::post('/edit_User/{id}',  [AdminsController::class, 'edit_User']);
+Route::get('/addUser',  [AdminsController::class, 'addUser']);
+Route::post('/add_User',  [AdminsController::class, 'add_User']);
 
 //Blog Controls
-Route::get('/blog', [AdminsController::class, 'blog'])->middleware('is_admin');
-Route::get('/editBlog/{id}', [AdminsController::class, 'editBlog'])->middleware('is_admin');
-Route::get('/delete_Blog/{id}', [AdminsController::class, 'delete_Blog'])->middleware('is_admin');
-Route::post('/edit_Blog/{id}',  [AdminsController::class, 'edit_Blog'])->middleware('is_admin');
-Route::get('/addBlog',  [AdminsController::class, 'addBlog'])->middleware('is_admin');
-Route::post('/add_blog',  [AdminsController::class, 'add_Blog'])->middleware('is_admin');
+Route::get('/blog', [AdminsController::class, 'blog']);
+Route::get('/editBlog/{id}', [AdminsController::class, 'editBlog']);
+Route::get('/delete_Blog/{id}', [AdminsController::class, 'delete_Blog']);
+Route::post('/edit_Blog/{id}',  [AdminsController::class, 'edit_Blog']);
+Route::get('/addBlog',  [AdminsController::class, 'addBlog']);
+Route::post('/add_blog',  [AdminsController::class, 'add_Blog']);
 
 //Categories Control
-Route::get('/categories', [AdminsController::class, 'categories'])->middleware('is_admin');
-Route::get('/editCategories/{id}', [AdminsController::class, 'editCategories'])->middleware('is_admin');
-Route::get('/deleteCategory/{id}', [AdminsController::class, 'deleteCategory'])->middleware('is_admin');
-Route::post('/edit_Category/{id}',  [AdminsController::class, 'edit_Category'])->middleware('is_admin');
-Route::get('/addCategory',  [AdminsController::class, 'addCategory'])->middleware('is_admin');
-Route::post('/add_Category',  [AdminsController::class, 'add_Category'])->middleware('is_admin');
+Route::get('/categories', [AdminsController::class, 'categories']);
+Route::get('/editCategories/{id}', [AdminsController::class, 'editCategories']);
+Route::get('/deleteCategory/{id}', [AdminsController::class, 'deleteCategory']);
+Route::post('/edit_Category/{id}',  [AdminsController::class, 'edit_Category']);
+Route::get('/addCategory',  [AdminsController::class, 'addCategory']);
+Route::post('/add_Category',  [AdminsController::class, 'add_Category']);
 
 //Extra Control
-Route::get('/extras', [AdminsController::class, 'extras'])->middleware('is_admin');
-Route::get('/editExtra/{id}', [AdminsController::class, 'editExtra'])->middleware('is_admin');
-Route::get('/deleteExtra/{id}', [AdminsController::class, 'deleteExtra'])->middleware('is_admin');
-Route::post('/edit_Extra/{id}',  [AdminsController::class, 'edit_Extra'])->middleware('is_admin');
-Route::get('/addExtra',  [AdminsController::class, 'addExtra'])->middleware('is_admin');
-Route::post('/add_Extra',  [AdminsController::class, 'add_Extra'])->middleware('is_admin');
+Route::get('/extras', [AdminsController::class, 'extras']);
+Route::get('/editExtra/{id}', [AdminsController::class, 'editExtra']);
+Route::get('/deleteExtra/{id}', [AdminsController::class, 'deleteExtra']);
+Route::post('/edit_Extra/{id}',  [AdminsController::class, 'edit_Extra']);
+Route::get('/addExtra',  [AdminsController::class, 'addExtra']);
+Route::post('/add_Extra',  [AdminsController::class, 'add_Extra']);
 
-Route::get('/categoriesBanners', [AdminsController::class, 'categoriesBanners'])->middleware('is_admin');
-Route::get('/editCategoriesBanners/{id}', [AdminsController::class, 'editCategoriesBanners'])->middleware('is_admin');
-Route::get('/deleteCategoryBanners/{id}', [AdminsController::class, 'deleteCategoryBanners'])->middleware('is_admin');
-Route::post('/edit_CategoryBanners/{id}',  [AdminsController::class, 'edit_CategoryBanners'])->middleware('is_admin');
-Route::get('/addCategoryBanners',  [AdminsController::class, 'addCategoryBanners'])->middleware('is_admin');
-Route::post('/add_CategoryBanners',  [AdminsController::class, 'add_CategoryBanners'])->middleware('is_admin');
+Route::get('/categoriesBanners', [AdminsController::class, 'categoriesBanners']);
+Route::get('/editCategoriesBanners/{id}', [AdminsController::class, 'editCategoriesBanners']);
+Route::get('/deleteCategoryBanners/{id}', [AdminsController::class, 'deleteCategoryBanners']);
+Route::post('/edit_CategoryBanners/{id}',  [AdminsController::class, 'edit_CategoryBanners']);
+Route::get('/addCategoryBanners',  [AdminsController::class, 'addCategoryBanners']);
+Route::post('/add_CategoryBanners',  [AdminsController::class, 'add_CategoryBanners']);
 
-Route::get('/tags', [AdminsController::class, 'tags'])->middleware('is_admin');
-Route::get('/editTag/{id}', [AdminsController::class, 'editTag'])->middleware('is_admin');
-Route::get('/deleteTag/{id}', [AdminsController::class, 'deleteTag'])->middleware('is_admin');
-Route::post('/edit_Tag/{id}',  [AdminsController::class, 'edit_Tag'])->middleware('is_admin');
-Route::get('/addTag',  [AdminsController::class, 'addTag'])->middleware('is_admin');
-Route::post('/add_Tag',  [AdminsController::class, 'add_Tag'])->middleware('is_admin');
+Route::get('/tags', [AdminsController::class, 'tags']);
+Route::get('/editTag/{id}', [AdminsController::class, 'editTag']);
+Route::get('/deleteTag/{id}', [AdminsController::class, 'deleteTag']);
+Route::post('/edit_Tag/{id}',  [AdminsController::class, 'edit_Tag']);
+Route::get('/addTag',  [AdminsController::class, 'addTag']);
+Route::post('/add_Tag',  [AdminsController::class, 'add_Tag']);
 
 //Service Renreded Control
-Route::get('/service_rendered', [AdminsController::class, 'service_rendered'])->middleware('is_admin');
-Route::get('/editService_rendered/{id}', [AdminsController::class, 'editService_rendered'])->middleware('is_admin');
-Route::get('/deleteService_rendered/{id}', [AdminsController::class, 'deleteService_rendered'])->middleware('is_admin');
-Route::post('/edit_Service_rendered/{id}',  [AdminsController::class, 'edit_Service_rendered'])->middleware('is_admin');
-Route::get('/addService_rendered',  [AdminsController::class, 'addService_rendered'])->middleware('is_admin');
-Route::post('/add_Service_rendered',  [AdminsController::class, 'add_Service_rendered'])->middleware('is_admin');
+Route::get('/service_rendered', [AdminsController::class, 'service_rendered']);
+Route::get('/editService_rendered/{id}', [AdminsController::class, 'editService_rendered']);
+Route::get('/deleteService_rendered/{id}', [AdminsController::class, 'deleteService_rendered']);
+Route::post('/edit_Service_rendered/{id}',  [AdminsController::class, 'edit_Service_rendered']);
+Route::get('/addService_rendered',  [AdminsController::class, 'addService_rendered']);
+Route::post('/add_Service_rendered',  [AdminsController::class, 'add_Service_rendered']);
 
 //Daily
-Route::get('/daily', [AdminsController::class, 'daily'])->middleware('is_admin');
-Route::get('/editDaily/{id}', [AdminsController::class, 'editDaily'])->middleware('is_admin');
-Route::get('/deleteDaily/{id}', [AdminsController::class, 'deleteDaily'])->middleware('is_admin');
-Route::post('/edit_Daily/{id}',  [AdminsController::class, 'edit_Daily'])->middleware('is_admin');
-Route::get('/addDaily',  [AdminsController::class, 'addDaily'])->middleware('is_admin');
-Route::post('/add_Daily',  [AdminsController::class, 'add_Daily'])->middleware('is_admin');
+Route::get('/daily', [AdminsController::class, 'daily']);
+Route::get('/editDaily/{id}', [AdminsController::class, 'editDaily']);
+Route::get('/deleteDaily/{id}', [AdminsController::class, 'deleteDaily']);
+Route::post('/edit_Daily/{id}',  [AdminsController::class, 'edit_Daily']);
+Route::get('/addDaily',  [AdminsController::class, 'addDaily']);
+Route::post('/add_Daily',  [AdminsController::class, 'add_Daily']);
 
 
 //Sub Categories
-Route::get('/subCategories', [AdminsController::class, 'subCategories'])->middleware('is_admin');
-Route::get('/editSubCategories/{id}', [AdminsController::class, 'editSubCategories'])->middleware('is_admin');
-Route::get('/deleteSubCategory/{id}', [AdminsController::class, 'deleteSubCategory'])->middleware('is_admin');
-Route::post('/edit_SubCategory/{id}',  [AdminsController::class, 'edit_SubCategory'])->middleware('is_admin');
-Route::get('/addSubCategory',  [AdminsController::class, 'addSubCategory'])->middleware('is_admin');
-Route::post('/add_SubCategory',  [AdminsController::class, 'add_SubCategory'])->middleware('is_admin');
+Route::get('/subCategories', [AdminsController::class, 'subCategories']);
+Route::get('/editSubCategories/{id}', [AdminsController::class, 'editSubCategories']);
+Route::get('/deleteSubCategory/{id}', [AdminsController::class, 'deleteSubCategory']);
+Route::post('/edit_SubCategory/{id}',  [AdminsController::class, 'edit_SubCategory']);
+Route::get('/addSubCategory',  [AdminsController::class, 'addSubCategory']);
+Route::post('/add_SubCategory',  [AdminsController::class, 'add_SubCategory']);
 
 //Active Services
-Route::get('/traceServices', [AdminsController::class, 'traceServices'])->middleware('is_admin');
-Route::get('/editTraceServices/{id}', [AdminsController::class, 'editTraceServices'])->middleware('is_admin');
-Route::get('/deleteTraceServices/{id}', [AdminsController::class, 'deleteTraceServices'])->middleware('is_admin');
-Route::post('/edit_TraceServices/{id}',  [AdminsController::class, 'edit_TraceServices'])->middleware('is_admin');
-Route::get('/addTraceServices',  [AdminsController::class, 'addTraceServices'])->middleware('is_admin');
-Route::post('/add_TraceServices',  [AdminsController::class, 'add_TraceServices'])->middleware('is_admin');
+Route::get('/traceServices', [AdminsController::class, 'traceServices']);
+Route::get('/editTraceServices/{id}', [AdminsController::class, 'editTraceServices']);
+Route::get('/deleteTraceServices/{id}', [AdminsController::class, 'deleteTraceServices']);
+Route::post('/edit_TraceServices/{id}',  [AdminsController::class, 'edit_TraceServices']);
+Route::get('/addTraceServices',  [AdminsController::class, 'addTraceServices']);
+Route::post('/add_TraceServices',  [AdminsController::class, 'add_TraceServices']);
 
 // Generic Routes
-Route::get('/form', [AdminsController::class, 'form'])->middleware('is_admin');
-Route::get('/list', [AdminsController::class, 'list'])->middleware('is_admin');
-Route::get('/formfile', [AdminsController::class, 'formfile'])->middleware('is_admin');
-Route::get('/formfiletext', [AdminsController::class, 'formfiletext'])->middleware('is_admin');
+Route::get('/form', [AdminsController::class, 'form']);
+Route::get('/list', [AdminsController::class, 'list']);
+Route::get('/formfile', [AdminsController::class, 'formfile']);
+Route::get('/formfiletext', [AdminsController::class, 'formfiletext']);
 
 //Payments
-Route::get('/payments', [AdminsController::class, 'payments'])->middleware('is_admin');
-Route::get('/payments/explore/{id}', [AdminsController::class, 'payments_explore'])->middleware('is_admin');
+Route::get('/payments', [AdminsController::class, 'payments']);
+Route::get('/payments/explore/{id}', [AdminsController::class, 'payments_explore']);
 //MPESA Routes
-Route::get('/balance', [AdminsController::class, 'balance'])->middleware('is_admin');
-Route::get('/reverse', [AdminsController::class, 'reverse'])->middleware('is_admin');
-Route::get('/lnmo', [AdminsController::class, 'lnmo'])->middleware('is_admin');
-Route::get('/b2b', [AdminsController::class, 'b2b'])->middleware('is_admin');
-Route::get('/b2c', [AdminsController::class, 'b2c'])->middleware('is_admin');
-Route::get('/lnmo/confirm/{id}', [AdminsController::class, 'lnmo_confirm'])->middleware('is_admin');
+Route::get('/balance', [AdminsController::class, 'balance']);
+Route::get('/reverse', [AdminsController::class, 'reverse']);
+Route::get('/lnmo', [AdminsController::class, 'lnmo']);
+Route::get('/b2b', [AdminsController::class, 'b2b']);
+Route::get('/b2c', [AdminsController::class, 'b2c']);
+Route::get('/lnmo/confirm/{id}', [AdminsController::class, 'lnmo_confirm']);
 
 
 // Order
-Route::get('/orders/explore/{id}', [AdminsController::class, 'order_explore'])->middleware('is_admin');
+Route::get('/orders/explore/{id}', [AdminsController::class, 'order_explore']);
 
 //Notifications
-Route::get('/notifications', [AdminsController::class, 'notifications'])->middleware('is_admin');
-Route::get('/notification/{id}', [AdminsController::class, 'notification'])->middleware('is_admin');
-Route::get('/deleteNotification/{id}', [AdminsController::class, 'deleteNotification'])->middleware('is_admin');
+Route::get('/notifications', [AdminsController::class, 'notifications']);
+Route::get('/notification/{id}', [AdminsController::class, 'notification']);
+Route::get('/deleteNotification/{id}', [AdminsController::class, 'deleteNotification']);
 
 //Service Requests
-Route::get('/requests', [AdminsController::class, 'quoterequeste'])->middleware('is_admin');
-Route::get('/markRequest/{id}/{status}/{type}', [AdminsController::class, 'markRequest'])->middleware('is_admin');
+Route::get('/requests', [AdminsController::class, 'quoterequeste']);
+Route::get('/markRequest/{id}/{status}/{type}', [AdminsController::class, 'markRequest']);
 
 //Comments
-Route::get('/reviews', [AdminsController::class, 'reviews'])->middleware('is_admin');
-Route::get('/approve/{id}', [AdminsController::class, 'approve'])->middleware('is_admin');
-Route::get('/decline/{id}', [AdminsController::class, 'decline'])->middleware('is_admin');
+Route::get('/reviews', [AdminsController::class, 'reviews']);
+Route::get('/approve/{id}', [AdminsController::class, 'approve']);
+Route::get('/decline/{id}', [AdminsController::class, 'decline']);
 
 // Error Pages
-Route::get('/403', [AdminsController::class, 'error403'])->middleware('is_admin');
-Route::get('/404', [AdminsController::class, 'error404'])->middleware('is_admin');
-Route::get('/405', [AdminsController::class, 'error405'])->middleware('is_admin');
-Route::get('/500', [AdminsController::class, 'error500'])->middleware('is_admin');
-Route::get('/503', [AdminsController::class, 'error503'])->middleware('is_admin');
+Route::get('/403', [AdminsController::class, 'error403']);
+Route::get('/404', [AdminsController::class, 'error404']);
+Route::get('/405', [AdminsController::class, 'error405']);
+Route::get('/500', [AdminsController::class, 'error500']);
+Route::get('/503', [AdminsController::class, 'error503']);
 
 
 
 
 
 // Subscribers Mail
-Route::post('/updatemail', [AdminsController::class, 'updatemail'])->middleware('is_admin');
+Route::post('/updatemail', [AdminsController::class, 'updatemail']);
 
 
 //Updates
-Route::get('/updates', [AdminsController::class, 'updates'])->middleware('is_admin');
-Route::get('/update/{id}', [AdminsController::class, 'update'])->middleware('is_admin');
-Route::get('/mark/{id}', [AdminsController::class, 'mark'])->middleware('is_admin');
+Route::get('/updates', [AdminsController::class, 'updates']);
+Route::get('/update/{id}', [AdminsController::class, 'update']);
+Route::get('/mark/{id}', [AdminsController::class, 'mark']);
 
 //profile
-Route::get('/profile', [AdminsController::class, 'profile'])->middleware('is_admin');
-Route::post('/profile_save/{id}', [AdminsController::class, 'profile_save'])->middleware('is_admin');
-Route::get('/editFile/{id}', [AdminsController::class, 'editFile'])->middleware('is_admin');
-Route::post('/edit_File/{id}', [AdminsController::class, 'edit_File'])->middleware('is_admin');
+Route::get('/profile', [AdminsController::class, 'profile']);
+Route::post('/profile_save/{id}', [AdminsController::class, 'profile_save']);
+Route::get('/editFile/{id}', [AdminsController::class, 'editFile']);
+Route::post('/edit_File/{id}', [AdminsController::class, 'edit_File']);
 
 // Gallery
-Route::get('/gallery', [AdminsController::class, 'gallery'])->middleware('is_admin');
+Route::get('/gallery', [AdminsController::class, 'gallery']);
 
 //Under Contruction
-Route::get('/under_construction', [AdminsController::class, 'under_construction'])->middleware('is_admin');
+Route::get('/under_construction', [AdminsController::class, 'under_construction']);
 
 //Wizard
-Route::get('/wizard', [AdminsController::class, 'wizard'])->middleware('is_admin');
+Route::get('/wizard', [AdminsController::class, 'wizard']);
 
 //Maps
-Route::get('/maps', [AdminsController::class, 'maps'])->middleware('is_admin');
+Route::get('/maps', [AdminsController::class, 'maps']);
 // SiteSettings
-Route::get('/sitesettings', [AdminsController::class, 'sitesettings'])->middleware('is_admin');
-Route::post('/savesitesettings', [AdminsController::class, 'savesitesettings'])->middleware('is_admin');
+Route::get('/sitesettings', [AdminsController::class, 'sitesettings']);
+Route::post('/savesitesettings', [AdminsController::class, 'savesitesettings']);
 //Messages
-Route::get('/allMessages',  [AdminsController::class, 'allMessages'])->middleware('is_admin');
-Route::get('/unread',  [AdminsController::class, 'unread'])->middleware('is_admin');
-Route::get('/read/{id}',  [AdminsController::class, 'read'])->middleware('is_admin');
-Route::post('/reply/{id}',  [AdminsController::class, 'reply'])->middleware('is_admin');
-Route::get('/deleteMessage/{id}',  [AdminsController::class, 'deleteMessage'])->middleware('is_admin');
+Route::get('/allMessages',  [AdminsController::class, 'allMessages']);
+Route::get('/unread',  [AdminsController::class, 'unread']);
+Route::get('/read/{id}',  [AdminsController::class, 'read']);
+Route::post('/reply/{id}',  [AdminsController::class, 'reply']);
+Route::get('/deleteMessage/{id}',  [AdminsController::class, 'deleteMessage']);
 
 //Subscribers
-Route::get('/subscribers',  [AdminsController::class, 'subscribers'])->middleware('is_admin');
-Route::get('/mailSubscribers/{email}',  [AdminsController::class, 'mailSubscribers'])->middleware('is_admin');
-Route::get('/mailSubscriber/{email}',  [AdminsController::class, 'mailSubscriber'])->middleware('is_admin');
-Route::get('/deleteSubscriber/{id}',  [AdminsController::class, 'deleteSubscriber'])->middleware('is_admin');
+Route::get('/subscribers',  [AdminsController::class, 'subscribers']);
+Route::get('/mailSubscribers/{email}',  [AdminsController::class, 'mailSubscribers']);
+Route::get('/mailSubscriber/{email}',  [AdminsController::class, 'mailSubscriber']);
+Route::get('/deleteSubscriber/{id}',  [AdminsController::class, 'deleteSubscriber']);
 // Version Control
-Route::get('/version',  [AdminsController::class, 'version'])->middleware('is_admin');
+Route::get('/version',  [AdminsController::class, 'version']);
 
 // Seo Settings
 // SeoSettings
-Route::get('/seosettings', [AdminsController::class, 'seosettings'])->middleware('is_admin');
-Route::post('/saveseosettings', [AdminsController::class, 'saveseosettings'])->middleware('is_admin');
+Route::get('/seosettings', [AdminsController::class, 'seosettings']);
+Route::post('/saveseosettings', [AdminsController::class, 'saveseosettings']);
 
-Route::get('/addProductToFacebookPixel', [AdminsController::class, 'addProductToFacebookPixel'])->middleware('is_admin');
-Route::get('/emptyProductToFacebookPixel', [AdminsController::class, 'emptyProductToFacebookPixel'])->middleware('is_admin');
-Route::get('/updateCategory', [AdminsController::class, 'updateCategory'])->middleware('is_admin');
-Route::get('/Without', [AdminsController::class, 'google_product_category'])->middleware('is_admin');
+Route::get('/addProductToFacebookPixel', [AdminsController::class, 'addProductToFacebookPixel']);
+Route::get('/emptyProductToFacebookPixel', [AdminsController::class, 'emptyProductToFacebookPixel']);
+Route::get('/updateCategory', [AdminsController::class, 'updateCategory']);
+Route::get('/Without', [AdminsController::class, 'google_product_category']);
 });
 
 Route::get('get/details/{id}', 'PaymentsConroller@getDetails')->name('getDetails');
