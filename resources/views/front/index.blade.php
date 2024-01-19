@@ -12,7 +12,7 @@
                       'name': 'fadeInRightShorter'
                       }" style="background-color: #e6e6e8">
                       <figure>
-                         <img src="{{url('/')}}/uploads/banners/ban.png" alt="banner image" width="680" height="508">
+                         <img src="{{url('/')}}/uploads/banners/banner.png" alt="banner image" width="680" height="508">
                       </figure>
                       <div class="banner-content top w-100 text-center">
                          <h4 class="banner-subtitle text-uppercase mb-2">
@@ -47,7 +47,7 @@
                       'name': 'fadeInLeftShorter'
                       }">
                       <figure>
-                         <img src="{{url('/')}}/uploads/banners/b4.png" alt="banner image" width="280" height="434">
+                         <img src="{{url('/')}}/uploads/banners/b4.jpg" alt="banner image" width="280" height="434">
                       </figure>
                       <div class="banner-content top w-100 text-center">
                          <p class="banner-date text-right text-white font-weight-bold">
