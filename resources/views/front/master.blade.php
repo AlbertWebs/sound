@@ -267,7 +267,8 @@
                      </div>
                      <div class="footer-right">
                         <div class="social-links">
-                           <a href="#" title="social-link" class="social-link social-facebook fab fa-facebook-f"></a>
+                           <a href="https://web.facebook.com/profile.php?id=100083312682272" title="social-link" class="social-link social-facebook fab fa-facebook-f"></a>
+                           <a href="https://www.instagram.com/soundwave_254/" title="social-link" class="social-link social-instagram fab fa-instagram mr-0"></a>
                            <a href="#" title="social-link" class="social-link social-twitter fab fa-twitter"></a>
                            <a href="#" title="social-link" class="social-link social-linkedin fab fa-linkedin-in mr-0"></a>
                         </div>
