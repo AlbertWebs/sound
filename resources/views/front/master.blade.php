@@ -16,11 +16,11 @@
       <meta name="theme-color" content="#1c2c52">
 
       <title>Sound Wave Audio - Elevate Your Drive with Premium Car Audio Systems in Nairobi</title>
-      <meta name="description" content="Transform your driving experience with Sound Wave Audio's cutting-edge Car Audio Systems. Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!">
+      <meta name="description" content="Dealers in electrical ,security and  motors installations,12volts power supplies,car amplifiers ,radios,and all  car audio systems . Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!">
       <link rel="canonical" href="https://soundwaveaudio.co.ke"/>
       <meta name="keywords" content="Car Audio Systems, Premium Car Audio, High-Performance Speakers, Amplifiers, In-Car Entertainment, Sound Solutions, Automotive Sound, Crystal-Clear Audio, Powerful Bass, Sound Wave Audio.">
 
-      <meta property="og:description" content="Transform your driving experience with Sound Wave Audio's cutting-edge Car Audio Systems. Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!" />
+      <meta property="og:description" content="Dealers in electrical,security and  motors installations,12volts power supplies,car amplifiers ,radios,and all  car audio systems . Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!" />
       <meta property="og:title" content="Sound Wave Audio - Elevate Your Drive with Premium Car Audio Systems in Nairobi" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://soundwaveaudio.co.ke" />
@@ -33,7 +33,7 @@
       <meta name="twitter:card" content="summary">
       <meta name="twitter:site" content="@SoundwaveAudio">
       <meta name="twitter:url" content="https://soundwaveaudio.co.ke">
-      <meta name="twitter:description" content="Transform your driving experience with Sound Wave Audio's cutting-edge Car Audio Systems. Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!">
+      <meta name="twitter:description" content="Dealers in electrical,security and  motors installations,12volts power supplies,car amplifiers ,radios,and all  car audio systems . Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!">
       <meta name="twitter:image" content="https://soundwaveaudio.co.ke/uploads/logo.png">
 
 

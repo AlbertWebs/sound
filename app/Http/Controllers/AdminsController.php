@@ -1589,7 +1589,7 @@ public function edit_Product(Request $request, $id){
    $replaced = $request->replaced;
 
 
-
+// dd($thumbnail);
 
 
     $updateDetails = array(
