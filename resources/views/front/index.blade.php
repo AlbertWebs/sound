@@ -169,7 +169,9 @@
         <section class="product-wrapper mt-10">
                 <div class="container pt-2">
                     <div class="title-wrapper with-filters d-flex align-items-center justify-content-between pt-2 mb-4">
-                        <h2 class="title title-simple mb-md-0 appear-animate" data-animation-options="{'name': 'fadeInLeftShorter','delay': '.2s'}">{{$Category->cat}}</h2>
+                        <h2 class="title title-simple mb-md-0 appear-animate" data-animation-options="{'name': 'fadeInLeftShorter','delay': '.2s'}">
+                            <a href="{{url('/')}}/products/{{$Category->slung}}">{{$Category->cat}}</a>
+                        </h2>
                     </div>
                     <hr>
                     <div id="products-1" class="row grid products-grid pb-2 mb-8 appear-animate" data-grid-options="{
