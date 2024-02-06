@@ -240,7 +240,7 @@ class HomeController extends Controller
                     $keywords = "$page_name Vehicle Accessories in Kenya";
                     // infinite Scroll
                     $Products = DB::table('product')->where('brand',$value->name)->paginate(24);
-                    return view('front.products-brands', compact('keywords','page_title', 'Products', 'page_name','search_results','search_results_category'));
+                    return view('front.products-brands', compact('keywords','page_title', 'Products', 'page_name','search_results','search_results_category','Categories'));
             }
         }
 
