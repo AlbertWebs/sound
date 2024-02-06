@@ -99,7 +99,7 @@
                         <div class="product text-center">
                             <figure class="product-media">
                                 <a href="{{url('/')}}/product/{{$item->slung}}">
-                                <img src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" width="168" height="190">
+                                <img src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" style="width:213px; height:213px;">
                                 </a>
                                 {{-- <div class="product-action-vertical">
                                     <a href="#" class="btn-product-icon btn-cart" data-toggle="modal" data-target="#addCartModal" title="Add to cart"><i class="d-icon-bag"></i></a>
