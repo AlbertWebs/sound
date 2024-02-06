@@ -160,7 +160,7 @@
        </section>
 
 
-       <?php $Categories = DB::table('category')->get(); ?>
+       <?php $Categories = DB::table('category')->orderby('orders','DESC')->get(); ?>
        @foreach ($Categories as $Category)
        <?php $Trending = DB::table('product')->where('cat',$Category->id)->limit('12')->orderBy('id','DESC')->get(); ?>
         @if($Trending->isEmpty())
