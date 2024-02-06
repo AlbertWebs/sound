@@ -217,9 +217,9 @@ class HomeController extends Controller
 
     public function brands($category){
 
-        $Category = DB::table('brands')->where('name',$category)->get();
+        $Categories  = DB::table('brands')->where('name',$category)->get();
 
-            foreach ($Category as $key => $value) {
+            foreach ($Categories  as $key => $value) {
                 $page_name = $value->name;
                 $SEOSettings = DB::table('seosettings')->get();
                 foreach ($SEOSettings as $Settings) {
