@@ -8,7 +8,7 @@
               'layoutMode': 'fitRows'
               }">
 
-                @foreach ($Categories as $item)
+                @foreach ($Products as $item)
                 <div class="grid-item col-xl-2 col-lg-3 col-sm-4 col-6">
                     <div class="product text-center" style="background-color:#f2f3f5">
                         <figure class="product-media">
@@ -73,17 +73,17 @@
         </div>
        </section>
 
-
+{{--
        <div  class="row">
         <div class="container pt-2">
             <nav class="toolbox toolbox-pagination">
                 <p class="show-info">Showing <span>12 of 56</span> Products</p>
                 <?php
-                    echo $Categories
+                    // echo $Categories
                 ?>
             </nav>
         </div>
-       </div>
+       </div> --}}
 
 
        {{-- <section class="grey-section pt-10 pb-10">
