@@ -36,6 +36,16 @@
       <meta name="twitter:description" content="Dealers in electrical,security and  motors installations,12volts power supplies,car amplifiers ,radios,and all  car audio systems . Explore our range of high-performance speakers and amplifiers, delivering crystal-clear sound and powerful bass. Upgrade your ride with automotive audio excellence!">
       <meta name="twitter:image" content="https://soundwaveaudio.co.ke/uploads/logo.png">
 
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-3FX382N5FJ">
+      </script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-3FX382N5FJ');
+      </script>
 
 
 
