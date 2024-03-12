@@ -18,9 +18,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "laravelium/sitemap": "^8.0",
-        "maatwebsite/excel": "^3.1",
         "orangehill/iseed": "^3.0",
-        "spatie/laravel-sitemap": "*",
+
         "stevebauman/location": "^6.2",
         "stichoza/google-translate-php": "^4.1"
     },
@@ -42,7 +41,7 @@
         "files": [
 
             "app/helpers.php"
-    
+
         ]
     },
     "autoload-dev": {
