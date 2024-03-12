@@ -25,7 +25,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('rate:cron')->twiceDaily(1, 13);
+        $schedule->command('sitemap:generate')->daily();
+
     }
+
 
     /**
      * Register the commands for the application.
