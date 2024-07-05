@@ -135,6 +135,7 @@ use File;
 
 use Illuminate\Support\Str;
 
+
 use App\Models\ServiceRequest;
 
 use App\Models\Image;
@@ -2494,87 +2495,23 @@ public function add_Blog(Request $request){
 
     $author = Auth::user()->name;
     $category = $request->cat;
-    $path = 'uploads/blogs';
-    if(isset($request->image_one)){
-        $fileSize = $request->file('image_one')->getSize();
-            if($fileSize>=1800000){
-            Session::flash('message', "File Exceeded the maximum allowed Size");
-            Session::flash('messageError', "An error occured, You may have exceeded the maximum size for an image you uploaded");
-            return Redirect::back();
-            }else{
 
-            $file = $request->file('image_one');
-            $filename = str_replace(' ', '', $file->getClientOriginalName());
-            $timestamp = new Datetime();
-            $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-            $image_main_temp = $new_timestamp.'image'.$filename;
-            $image_one = str_replace(' ', '',$image_main_temp);
-            $file->move($path, $image_one);
-            }
+    if(isset($request->image_one)){
+        $dir = 'uploads/blogs';
+        $file = $request->file('image_one');
+        $realPath = $request->file('image_one')->getRealPath();
+        $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
     }else{
-        $image_one = $request->pro_img_cheat;
+        $SaveFilePath = $request->image_one_cheat;
     }
 
     if(isset($request->image_two)){
-        $fileSize = $request->file('image_two')->getSize();
-         if($fileSize>=1800000){
-            Session::flash('message', "File Exceeded the maximum allowed Size");
-            Session::flash('messageError', "An error occured, You may have exceeded the maximum size for an image you uploaded");
-
-         }else{
-
-            $file = $request->file('image_two');
-            $filename = str_replace(' ', '', $file->getClientOriginalName());
-            $timestamp = new Datetime();
-            $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-            $image_main_temp = $new_timestamp.'image'.$filename;
-            $image_two = str_replace(' ', '',$image_main_temp);
-            $file->move($path, $image_two);
-         }
+        $dir = 'uploads/blogs';
+        $file = $request->file('image_two');
+        $realPath = $request->file('image_two')->getRealPath();
+        $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
     }else{
-        $image_two = $request->pro_img_cheat;
-    }
-
-
-    if(isset($request->image_three)){
-        $fileSize = $request->file('image_three')->getSize();
-        if($fileSize>=1800000){
-           Session::flash('message', "File Exceeded the maximum allowed Size");
-           Session::flash('messageError', "An error occured, You may have exceeded the maximum size for an image you uploaded");
-
-        }else{
-
-            $file = $request->file('image_three');
-            $filename = str_replace(' ', '', $file->getClientOriginalName());
-            $timestamp = new Datetime();
-            $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-            $image_main_temp = $new_timestamp.'image'.$filename;
-            $image_three = str_replace(' ', '',$image_main_temp);
-            $file->move($path, $image_three);
-        }
-    }else{
-        $image_three = $request->pro_img_cheat;
-    }
-    //Additional images
-
-    if(isset($request->image_four)){
-        $fileSize = $request->file('image_four')->getSize();
-        if($fileSize>=1800000){
-           Session::flash('message', "File Exceeded the maximum allowed Size");
-           Session::flash('messageError', "An error occured, You may have exceeded the maximum size for an image you uploaded");
-
-        }else{
-
-            $file = $request->file('image_four');
-            $filename = str_replace(' ', '', $file->getClientOriginalName());
-            $timestamp = new Datetime();
-            $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-            $image_main_temp = $new_timestamp.'image'.$filename;
-            $image_four = str_replace(' ', '',$image_main_temp);
-            $file->move($path, $image_four);
-        }
-    }else{
-        $image_four = $request->pro_img_cheat;
+        $SaveFilePath = $request->image_two_cheat;
     }
 
 
@@ -2584,19 +2521,16 @@ public function add_Blog(Request $request){
     $blog = new Blog;
     $blog->title = $title;
     $blog->link = $request->link;
+    $blog->slung =  Str::slug($request->title);
     $blog->content = $description;
     $blog->meta = $description;
     $blog->author = $author;
     $blog->category = $category;
-    $blog->image_one = $image_one;
-    $blog->image_two = $image_two;
+    $blog->image_one = $SaveFilePath;
+    // $blog->image_two = $image_two;
     $blog->save();
     Session::flash('message', "Changes Saved Successfully");
     return Redirect::back();
-
-
-
-
     $Blog->save();
 
     Session::flash('message', "Blog Has Been Added");
@@ -2619,109 +2553,59 @@ public function editBlog($id){
 
 
 public function edit_Blog(Request $request, $id){
+    // dd($request->all());
     $path = 'uploads/blogs';
     if(isset($request->image_one)){
-        $fileSize = $request->file('image_one')->getSize();
-            if($fileSize>=1800000){
-            Session::flash('message', "File Exceeded the maximum allowed Size");
-            Session::flash('messageError', "An error occured, You may have exceeded the maximum size for an image you uploaded");
-            return Redirect::back();
-            }else{
-
-            $file = $request->file('image_one');
-            $filename = str_replace(' ', '', $file->getClientOriginalName());
-            $timestamp = new Datetime();
-            $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-            $image_main_temp = $new_timestamp.'image'.$filename;
-            $image_one = str_replace(' ', '',$image_main_temp);
-            $file->move($path, $image_one);
-            }
+        $dir = 'uploads/blogs';
+        $file = $request->file('image_one');
+        $realPath = $request->file('image_one')->getRealPath();
+        $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
     }else{
-        $image_one = $request->image_one_cheat;
+        $SaveFilePath = $request->image_one_cheat;
     }
 
     if(isset($request->image_two)){
-        $fileSize = $request->file('image_two')->getSize();
-         if($fileSize>=1800000){
-            Session::flash('message_image_two', "File Exceeded the maximum allowed Size");
-            Session::flash('messageError', "An error occured, You may have exceeded the maximum size for an image you uploaded");
-
-         }else{
-
-            $file = $request->file('image_two');
-            $filename = str_replace(' ', '', $file->getClientOriginalName());
-            $timestamp = new Datetime();
-            $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-            $image_main_temp = $new_timestamp.'image'.$filename;
-            $image_two = str_replace(' ', '',$image_main_temp);
-            $file->move($path, $image_two);
-         }
+        $dir = 'uploads/blogs';
+        $file = $request->file('image_two');
+        $realPath = $request->file('image_two')->getRealPath();
+        $SaveFilePathTwo = $this->genericFIleUpload($file,$dir,$realPath);
     }else{
-        $image_two = $request->image_two_cheat;
+        $SaveFilePathTwo = $request->image_two_cheat;
     }
-
 
     if(isset($request->image_three)){
-        $fileSize = $request->file('image_three')->getSize();
-        if($fileSize>=1800000){
-           Session::flash('message_image_three', "File Exceeded the maximum allowed Size");
-           Session::flash('messageError', "An error occured, You may have exceeded the maximum size for an image you uploaded");
-
-        }else{
-
-            $file = $request->file('image_three');
-            $filename = str_replace(' ', '', $file->getClientOriginalName());
-            $timestamp = new Datetime();
-            $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-            $image_main_temp = $new_timestamp.'image'.$filename;
-            $image_three = str_replace(' ', '',$image_main_temp);
-            $file->move($path, $image_three);
-        }
+        $dir = 'uploads/blogs';
+        $file = $request->file('image_three');
+        $realPath = $request->file('image_three')->getRealPath();
+        $SaveFilePathThree = $this->genericFIleUpload($file,$dir,$realPath);
     }else{
-        $image_three = $request->image_three_cheat;
+        $SaveFilePathThree = $request->image_three_cheat;
     }
-    //Additional images
 
     if(isset($request->image_four)){
-        $fileSize = $request->file('image_four')->getSize();
-        if($fileSize>=1800000){
-           Session::flash('message_image_four', "File Exceeded the maximum allowed Size");
-           Session::flash('messageError', "An error occured, You may have exceeded the maximum size for an image you uploaded");
-
-        }else{
-
-            $file = $request->file('image_four');
-            $filename = str_replace(' ', '', $file->getClientOriginalName());
-            $timestamp = new Datetime();
-            $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-            $image_main_temp = $new_timestamp.'image'.$filename;
-            $image_four = str_replace(' ', '',$image_main_temp);
-            $file->move($path, $image_four);
-        }
+        $dir = 'uploads/blogs';
+        $file = $request->file('image_four');
+        $realPath = $request->file('image_four')->getRealPath();
+        $SaveFilePathFour = $this->genericFIleUpload($file,$dir,$realPath);
     }else{
-        $image_four = $request->image_four_cheat;
+        $SaveFilePathFour = $request->image_four_cheat;
     }
-
-
-
-
-
 
 
     $updateDetails = array(
         'title' => $request->title,
-        'content' => $request->content,
+        'slung' => Str::slug($request->title),
+        'content' => $request->ckeditor,
         'meta' => $request->content,
         'author' => $request->author,
         'category' => $request->cat,
         'link' => $request->link,
-        'image_one' =>$image_one,
-        'image_two' =>$image_two,
-        'image_three' =>$image_three,
-        'image_four' =>$image_four,
-
-
+        'image_one' =>$SaveFilePath,
+        'image_two' =>$SaveFilePathTwo,
+        'image_three' =>$SaveFilePathThree,
+        'image_four' =>$SaveFilePathFour,
     );
+
     DB::table('blogs')->where('id',$id)->update($updateDetails);
     Session::flash('message', "Changes have been saved");
     return Redirect::back();
@@ -4421,6 +4305,14 @@ public function deleteVariation($id){
     // return Redirect::back();
 }
 
+
+public function genericFIleUpload($file,$dir,$realPath){
+    $image_name = $file->getClientOriginalName();
+    $file->move(public_path($dir),$image_name);
+    $url = url('/');
+    $image_path = "$url/$dir/" . $image_name;
+    return $image_path;
+}
 
 
 }

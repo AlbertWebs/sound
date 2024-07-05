@@ -324,5 +324,6 @@
           </div>
        </section> --}}
     </div>
+    @include('front.blog')
  </main>
 @endsection

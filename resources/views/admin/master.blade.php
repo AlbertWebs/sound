@@ -440,6 +440,14 @@ $('#TransID').change(function(){
     });
 });
 </script>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('ckeditor', {
+        filebrowserUploadUrl: "{{ route('admin.product.uploadMedia', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form'
+    });
+</script>
+
 
 <?php $Service = DB::table('product')->get(); ?>
 @foreach($Service as $value)

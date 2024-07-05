@@ -47,7 +47,7 @@ class HomeController extends Controller
             Twitter::setSite('@soundwaveaudio');
 
             $page_name = 'Home1';
-            $page_title = 'Car Radio, Car Stereo - Crystal Car Audio';
+            $page_title = 'Car Radio, Car Stereo - Sound Wave Audio';
 
             $keywords = 'Car Sound Systems, Car Alarm Systems, Car Surveillance Systems,   ,in car Accessories  ,car stereo  ,car subwoofer  ,car stereo installation nairobi  , car audio shop
             ,car stereo shop  ,powered speakers  ,underseat subwoofer  ,car speakers  ,car amplifiers';
@@ -56,6 +56,80 @@ class HomeController extends Controller
             return view('front.index', compact('keywords','page_title'));
         }
     }
+
+    public function base()
+    {
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle(' '. $Settings->sitename.' - Knowledge Base');
+            SEOMeta::setDescription('Car speakers, Car subwoofer, car amplifiers , car alarm, car trackers, car audio system, car audio installation, car booster amplifiers');
+            SEOMeta::setCanonical('' . $Settings->url . '');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@soundwaveaudio');
+
+            $page_name = 'Home1';
+            $page_title = 'Car Radio, Car Stereo - Sound Wave Audio';
+
+            $keywords = 'Car Sound Systems, Car Alarm Systems, Car Surveillance Systems,   ,in car Accessories  ,car stereo  ,car subwoofer  ,car stereo installation nairobi  , car audio shop
+            ,car stereo shop  ,powered speakers  ,underseat subwoofer  ,car speakers  ,car amplifiers';
+
+
+            return view('front.base', compact('keywords','page_title'));
+        }
+    }
+
+    public function base_explore($slung)
+    {
+        $Blog = DB::table('blogs')->where('slung',$slung)->get();
+        foreach ($Blog as $Settings) {
+            SEOMeta::setTitle(' '. $Settings->title.' - Knowledge Base');
+            SEOMeta::setDescription('Car speakers, Car subwoofer, car amplifiers , car alarm, car trackers, car audio system, car audio installation, car booster amplifiers');
+            SEOMeta::setCanonical('' . url('/') . 'knowledge-base/'.$Settings->slung.'');
+            OpenGraph::setDescription('' . $Settings->meta . '');
+            OpenGraph::setTitle('' . $Settings->title . ' - ' . $Settings->meta . '');
+            OpenGraph::setUrl('' . url('/') . 'knowledge-base/'.$Settings->slung.'');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->title. '');
+            Twitter::setSite('@soundwaveaudio');
+
+            $page_name = 'Home1';
+            $page_title = 'Car Radio, Car Stereo - Sound Wave Audio';
+
+            $keywords = 'Car Sound Systems, Car Alarm Systems, Car Surveillance Systems,   ,in car Accessories  ,car stereo  ,car subwoofer  ,car stereo installation nairobi  , car audio shop
+            ,car stereo shop  ,powered speakers  ,underseat subwoofer  ,car speakers  ,car amplifiers';
+
+
+            return view('front.base_explore', compact('keywords','page_title','Blog'));
+        }
+    }
+
+
+    public function uploadMedia(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+            $path = public_path('uploads/ck');
+            $fileName = $request->file('upload')->move($path, $fileName)->getFilename();
+
+            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+            $url = asset('uploads/ck/' . $fileName);
+            $msg = 'Image uploaded successfully';
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+
+            @header('Content-type: text/html; charset=utf-8');
+            echo $response;
+        }
+        return false;
+    }
+
+
 
     public function swaps(){
         $USD = Currency::convert()->from('KES')->to('USD')->get();
@@ -326,7 +400,7 @@ class HomeController extends Controller
         $SEOSettings = DB::table('seosettings')->get();
         foreach ($SEOSettings as $Settings) {
             SEOMeta::setTitle('Contact Us | ' . $Settings->sitename . '');
-            SEOMeta::setDescription('Crystal Car Audio, Contact Vehicles Speakers in Kenya, Car Bass Speakers');
+            SEOMeta::setDescription('Sound Wave Audio, Contact Vehicles Speakers in Kenya, Car Bass Speakers');
             SEOMeta::setCanonical('' . $Settings->url . '/contact-us');
 
             OpenGraph::setDescription('' . $Settings->welcome . '');
@@ -350,7 +424,7 @@ class HomeController extends Controller
 
         foreach ($SEOSettings as $Settings) {
             SEOMeta::setTitle('About Us | ' . $Settings->sitename . '');
-            SEOMeta::setDescription('Crystal Car Audio, Amani Car Sound Systems  Car Speakers systems. Pioneer Car stereo, Speakers for sale in kenya ');
+            SEOMeta::setDescription('Sound Wave Audio, Amani Car Sound Systems  Car Speakers systems. Pioneer Car stereo, Speakers for sale in kenya ');
             SEOMeta::setCanonical('' . $Settings->url . '/about-us');
             OpenGraph::setDescription('' . $Settings->welcome . '');
             OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
@@ -489,7 +563,7 @@ class HomeController extends Controller
         $SEOSettings = DB::table('seosettings')->get();
         foreach ($SEOSettings as $Settings) {
             SEOMeta::setTitle('Terms and Conditions | ' . $Settings->sitename . '  ');
-            SEOMeta::setDescription('Crystal Car Audio Systems' . $Settings->welcome . '');
+            SEOMeta::setDescription('Sound Wave Audio Systems' . $Settings->welcome . '');
             SEOMeta::setCanonical('' . $Settings->url . '/terms-and-conditions');
             OpenGraph::setDescription('' . $Settings->welcome . '');
             OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
@@ -510,7 +584,7 @@ class HomeController extends Controller
         $SEOSettings = DB::table('seosettings')->get();
         foreach ($SEOSettings as $Settings) {
             SEOMeta::setTitle('Terms Of Delivery | ' . $Settings->sitename . '  ');
-            SEOMeta::setDescription('Crystal Car Audio Systems' . $Settings->welcome . '');
+            SEOMeta::setDescription('Sound Wave Audio Systems' . $Settings->welcome . '');
             SEOMeta::setCanonical('' . $Settings->url . '/delivery');
             OpenGraph::setDescription('' . $Settings->welcome . '');
             OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
@@ -533,7 +607,7 @@ class HomeController extends Controller
         $SEOSettings = DB::table('seosettings')->get();
         foreach ($SEOSettings as $Settings) {
             SEOMeta::setTitle('Privacy Policy | ' . $Settings->sitename . '  ');
-            SEOMeta::setDescription('Crystal Car Audio Privacy Policies' . $Settings->welcome . '');
+            SEOMeta::setDescription('Sound Wave Audio Privacy Policies' . $Settings->welcome . '');
             SEOMeta::setCanonical('' . $Settings->url . '/privacy');
             OpenGraph::setDescription('' . $Settings->welcome . '');
             OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
@@ -554,7 +628,7 @@ class HomeController extends Controller
         $SEOSettings = DB::table('seosettings')->get();
         foreach ($SEOSettings as $Settings) {
             SEOMeta::setTitle('Shipping Policy | ' . $Settings->sitename . '  ');
-            SEOMeta::setDescription('Crystal Car Audio Privacy Policies' . $Settings->welcome . '');
+            SEOMeta::setDescription('Sound Wave Audio Privacy Policies' . $Settings->welcome . '');
             SEOMeta::setCanonical('' . $Settings->url . '/privacy');
             OpenGraph::setDescription('' . $Settings->welcome . '');
             OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
@@ -577,7 +651,7 @@ class HomeController extends Controller
         $SEOSettings = DB::table('seosettings')->get();
         foreach ($SEOSettings as $Settings) {
             SEOMeta::setTitle('Copyright Statement | ' . $Settings->sitename . '  ');
-            SEOMeta::setDescription('Crystal Car Audio Copyrights' . $Settings->welcome . '');
+            SEOMeta::setDescription('Sound Wave Audio Copyrights' . $Settings->welcome . '');
             SEOMeta::setCanonical('' . $Settings->url . '/copyright');
             OpenGraph::setDescription('' . $Settings->welcome . '');
             OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');

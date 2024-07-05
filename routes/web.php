@@ -28,6 +28,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home-page');
 Route::get('/product-quick-view/{slung}', [HomeController::class, 'product_quick_view'])->name('product-quick-view');
 Route::get('/products', [HomeController::class, 'categories'])->name('categories');
 Route::get('/products/category', [HomeController::class, 'products_category'])->name('category');
+Route::get('/knowledge-base', [HomeController::class, 'base'])->name('knowledge-base');
+Route::get('/knowledge-base/{slung}', [HomeController::class, 'base_explore'])->name('knowledge-base-explore');
+
+Route::post('product/img', [HomeController::class, 'uploadMedia'])->name('admin.product.uploadMedia');
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
