@@ -27,6 +27,15 @@
                     }
                 }
             }">
+            <style>
+             .post-media{
+                width:100%;
+                height:280px;
+             }
+             .post-media img{
+                object-fit: cover;
+             }
+            </style>
 
 
             @foreach($Blog as $blog)
@@ -34,7 +43,7 @@
                 <div class="post-box">
                     <div class="post-media">
                         <a href="{{url('/')}}/knowledge-base/{{$blog->slung}}">
-                            <img src="{{$blog->image_one}}" data-zoom-image="{{$blog->image_one}}" width="354" height="181" alt="Post">
+                            <img src="{{$blog->image_one}}" data-zoom-image="{{$blog->image_one}}"  alt="Post">
                         </a>
                         <span class="prod-full-screen">
                             <i class="fas fa-search"></i>
